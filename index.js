@@ -75,7 +75,7 @@ var PythonShell = function (script, options) {
 
     this.childProcess.on('exit', function (code) {
         var err;
-        if (errorData || code !== 0) {
+        if ((errorData && !options.breakOnStdErrOnly) || code !== 0) {
             if (errorData) {
                 err = self.parseError(errorData);
             } else {
